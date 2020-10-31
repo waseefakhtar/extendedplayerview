@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/colorPrimary"
-    tools:context=".MainActivity">
+    tools:context=".sample.MainActivity">
 
     <com.waseefakhtar.extendedplayerview.ExtendedPlayerView
         android:id="@+id/player_view"

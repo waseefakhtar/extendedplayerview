@@ -1,15 +1,15 @@
-package com.waseefakhtar.extendedplayerview
+package com.waseefakhtar.extendedplayerview.sample
 
 import android.os.Bundle
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.exoplayer2.C
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout
 import com.google.android.exoplayer2.util.Util
+import com.waseefakhtar.extendedplayerview.ExtendedPlayerView
 
 class MainActivity : AppCompatActivity() {
 
