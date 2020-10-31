@@ -14,9 +14,9 @@ class ExtendedPlayerView @JvmOverloads constructor(
     private val defStyleAttr: Int = 0
 ) : PlayerView(context, attrs, defStyleAttr) {
 
-    private var controllerVisibility = true
-    private var mutePlayer = false
-    private var playerCornerRadius = 0f
+    var controllerVisibility = true
+    var mutePlayer = false
+    var playerCornerRadius = 0f
 
     init {
         attrs?.let {
@@ -29,6 +29,8 @@ class ExtendedPlayerView @JvmOverloads constructor(
                 a.recycle()
             }
         }
+
+        roundCornerRadius(playerCornerRadius)
     }
 }
 
@@ -50,6 +52,23 @@ fun ExtendedPlayerView.roundCornerRadius(@DimenRes radius: Int) {
                     view.width,
                     view.height,
                     view.resources.getDimension(radius)
+                )
+            }
+        }
+        clipToOutline = true
+    }
+}
+
+fun ExtendedPlayerView.roundCornerRadius(radius: Float) {
+    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+        outlineProvider = object : ViewOutlineProvider() {
+            override fun getOutline(view: View, outline: Outline) {
+                outline.setRoundRect(
+                    0,
+                    0,
+                    view.width,
+                    view.height,
+                    radius
                 )
             }
         }

@@ -9,7 +9,7 @@ import com.google.android.exoplayer2.util.Util
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var playerView: PlayerView
+    private lateinit var playerView: ExtendedPlayerView
     private var player: SimpleExoPlayer? = null
 
     private val mp4Url = "https://html5demos.com/assets/dizzy.mp4"
