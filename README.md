@@ -4,7 +4,7 @@
 
 `extendedplayerview` is an easy to customize player view for Android extending from [PlayerView](https://exoplayer.dev/doc/reference/com/google/android/exoplayer2/ui/PlayerView.html) to make the migration from `PlayerView` to `ExtendedPlayerView` super easy!
 
-### Installation
+## Installation
 
 #### Maven (waiting for deployment to the Central Repository currently...)
 ```groovy
@@ -21,6 +21,8 @@ Or,
 implementation project(':extendedplayerview')
 ```
 
+## Usage
+
 XML Changes:
 ```diff
 - <com.google.android.exoplayer2.ui.PlayerView
@@ -36,7 +38,7 @@ Kotlin Changes:
 + private var playerView: ExtendedPlayerView
 ```
 
-### Customization
+## Customization
 
 `extendedplayerview` is great for apps that prefer customizing player view properties, which `PlayerView` makes it extremely hard to do so. In order to make use of the easy to use customization, ExtendedPlayerView's properties can either be changed programmatically, or it can pick values from the new XML attributes.
 
