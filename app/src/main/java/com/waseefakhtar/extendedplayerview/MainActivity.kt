@@ -1,15 +1,18 @@
 package com.waseefakhtar.extendedplayerview
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.view.animation.AnimationUtils
+import android.widget.FrameLayout
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.SimpleExoPlayer
-import com.google.android.exoplayer2.ui.PlayerView
 import com.google.android.exoplayer2.util.Util
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var playerView: ExtendedPlayerView
+    private lateinit var playIconView: FrameLayout
     private var player: SimpleExoPlayer? = null
 
     private val mp4Url = "https://html5demos.com/assets/dizzy.mp4"
@@ -24,8 +27,14 @@ class MainActivity : AppCompatActivity() {
         playerView = findViewById(R.id.player_view)
         playerView.setOnClickListener {
             when (player?.isPlaying) {
-                true -> player?.playWhenReady = false
-                false -> player?.playWhenReady = true
+                true -> {
+                    player?.playWhenReady = false
+                    fadeIn()
+                }
+                false -> {
+                    player?.playWhenReady = true
+                    fadeOut()
+                }
             }
         }
 
@@ -33,6 +42,24 @@ class MainActivity : AppCompatActivity() {
         playerView.cornerRadius = 84f
         playerView.mute = true
         playerView.controllerVisibility = false
+
+        playIconView = findViewById(R.id.play_icon_view)
+        playIconView.setOnClickListener {
+            player?.playWhenReady = true
+            fadeOut()
+        }
+    }
+
+    private fun fadeIn() {
+        val fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in)
+        playIconView.startAnimation(fadeIn)
+        playIconView.visibility = View.VISIBLE
+    }
+
+    private fun fadeOut() {
+        val fadeOut = AnimationUtils.loadAnimation(this, R.anim.fade_out)
+        playIconView.startAnimation(fadeOut)
+        playIconView.visibility = View.INVISIBLE
     }
 
     override fun onStart() {
@@ -56,7 +83,6 @@ class MainActivity : AppCompatActivity() {
         val mediaItem: MediaItem = MediaItem.fromUri(mp4Url)
         player?.setMediaItem(mediaItem)
 
-        player?.playWhenReady = true
         player?.prepare()
         player?.volume
     }
