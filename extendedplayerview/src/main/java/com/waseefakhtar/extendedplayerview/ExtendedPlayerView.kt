@@ -6,23 +6,31 @@ import android.util.AttributeSet
 import android.view.View
 import android.view.ViewOutlineProvider
 import androidx.annotation.DimenRes
+import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.ui.PlayerView
 
 class ExtendedPlayerView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
-    private val defStyleAttr: Int = 0
+    defStyleAttr: Int = 0
 ) : PlayerView(context, attrs, defStyleAttr) {
 
-    var controllerVisibility = true
-    var mutePlayer = false
-    var playerCornerRadius = 0f
+    private var hideControllerVisibility = false
+    private var playerCornerRadius = 0f
+
+    private var mutePlayer = false
+    var mute
+        get() = mutePlayer
+        set(value) {
+            mutePlayer = value
+            mute(value)
+        }
 
     init {
         attrs?.let {
             val a = context.theme.obtainStyledAttributes(attrs, R.styleable.ExtendedPlayerView, 0, 0)
             try {
-                controllerVisibility = a.getBoolean(R.styleable.ExtendedPlayerView_controllerVisibility, true)
+                hideControllerVisibility = a.getBoolean(R.styleable.ExtendedPlayerView_controllerVisibility, false)
                 mutePlayer = a.getBoolean(R.styleable.ExtendedPlayerView_mutePlayer, false)
                 playerCornerRadius = a.getDimension(R.styleable.ExtendedPlayerView_playerCornerRadius, 0f)
             } finally {
@@ -31,8 +39,23 @@ class ExtendedPlayerView @JvmOverloads constructor(
         }
 
         roundCornerRadius(playerCornerRadius)
-        if (!controllerVisibility) {
+        if (hideControllerVisibility) {
             hideControllerVisibility()
+        }
+    }
+
+    override fun onAttachedToWindow() {
+        super.onAttachedToWindow()
+        mute(mutePlayer)
+    }
+
+    private fun mute(mute: Boolean) {
+        if (player is SimpleExoPlayer) {
+            val simpleExoPlayer = player as SimpleExoPlayer
+            when (mute) {
+                true -> simpleExoPlayer.volume = 0f
+                false -> simpleExoPlayer.volume = 1f
+            }
         }
     }
 }
@@ -41,6 +64,14 @@ fun ExtendedPlayerView.hideControllerVisibility() {
     setControllerVisibilityListener { visibility ->
         if (visibility == 0) {
             hideController()
+        }
+    }
+}
+
+fun ExtendedPlayerView.showControllerVisibility() {
+    setControllerVisibilityListener { visibility ->
+        if (visibility == 1) {
+            showController()
         }
     }
 }

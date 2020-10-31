@@ -28,6 +28,11 @@ class MainActivity : AppCompatActivity() {
                 false -> player?.playWhenReady = true
             }
         }
+
+        // Setting properties programmatically.
+        playerView.roundCornerRadius(84f)
+        playerView.mute = true
+        playerView.hideControllerVisibility()
     }
 
     override fun onStart() {
@@ -53,6 +58,7 @@ class MainActivity : AppCompatActivity() {
 
         player?.playWhenReady = true
         player?.prepare()
+        player?.volume
     }
 
     override fun onPause() {
