@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var playIconView: FrameLayout
     private var player: SimpleExoPlayer? = null
 
-    private val mp4Url = "https://html5demos.com/assets/dizzy.mp4"
+    private val mp4Url = "https://assets.mixkit.co/videos/preview/mixkit-set-of-plateaus-seen-from-the-heights-in-a-sunset-26070-large.mp4"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,10 +44,6 @@ class MainActivity : AppCompatActivity() {
         playerView.controllerVisibility = false
 
         playIconView = findViewById(R.id.play_icon_view)
-        playIconView.setOnClickListener {
-            player?.playWhenReady = true
-            fadeOut()
-        }
     }
 
     private fun fadeIn() {
