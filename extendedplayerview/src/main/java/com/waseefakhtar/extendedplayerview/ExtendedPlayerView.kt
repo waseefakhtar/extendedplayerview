@@ -31,6 +31,9 @@ class ExtendedPlayerView @JvmOverloads constructor(
         }
 
         roundCornerRadius(playerCornerRadius)
+        if (!controllerVisibility) {
+            hideControllerVisibility()
+        }
     }
 }
 

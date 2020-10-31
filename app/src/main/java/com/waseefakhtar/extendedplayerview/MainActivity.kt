@@ -22,6 +22,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun initView() {
         playerView = findViewById(R.id.player_view)
+        playerView.setOnClickListener {
+            when (player?.isPlaying) {
+                true -> player?.playWhenReady = false
+                false -> player?.playWhenReady = true
+            }
+        }
     }
 
     override fun onStart() {
