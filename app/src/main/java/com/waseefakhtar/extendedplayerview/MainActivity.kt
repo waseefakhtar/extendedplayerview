@@ -5,8 +5,10 @@ import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.exoplayer2.C
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.SimpleExoPlayer
+import com.google.android.exoplayer2.ui.AspectRatioFrameLayout
 import com.google.android.exoplayer2.util.Util
 
 class MainActivity : AppCompatActivity() {
@@ -16,6 +18,8 @@ class MainActivity : AppCompatActivity() {
     private var player: SimpleExoPlayer? = null
 
     private val mp4Url = "https://assets.mixkit.co/videos/preview/mixkit-set-of-plateaus-seen-from-the-heights-in-a-sunset-26070-large.mp4"
+    private val mp4Url2 = "https://assets.mixkit.co/videos/preview/mixkit-virgin-lonely-beach-with-a-palapa-1958-large.mp4"
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +46,7 @@ class MainActivity : AppCompatActivity() {
         playerView.cornerRadius = 84f
         playerView.mute = true
         playerView.controllerVisibility = false
+        playerView.resizeMode = AspectRatioFrameLayout.RESIZE_MODE_ZOOM
 
         playIconView = findViewById(R.id.play_icon_view)
     }

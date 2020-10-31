@@ -11,11 +11,11 @@
     <com.waseefakhtar.extendedplayerview.ExtendedPlayerView
         android:id="@+id/player_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="256dp"
         android:layout_margin="16dp"
         app:playerCornerRadius="20dp"
         app:controllerVisibility="false"
-        app:mutePlayer="true"
+        app:mutePlayer="false"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
