@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ExtendedPlayerView">
+        <!-- Show/hide the visibility of player's controller. Default value: true -->
+        <attr name="controllerVisibility" format="boolean" />
+
+        <!-- Mute/unmute the player's media. Default value: false -->
+        <attr name="mutePlayer" format="boolean" />
+
+        <!-- Set corner radius of the player. Default value: 0 -->
+        <attr name="playerCornerRadius" format="dimension" />
+    </declare-styleable>
+</resources>
