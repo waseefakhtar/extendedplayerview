@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
         // Setting properties programmatically.
         playerView.roundCornerRadius(84f)
         playerView.mute = true
-        playerView.hideControllerVisibility()
+        playerView.controllerVisibility = false
     }
 
     override fun onStart() {

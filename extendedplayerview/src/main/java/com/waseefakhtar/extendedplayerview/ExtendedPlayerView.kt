@@ -15,7 +15,14 @@ class ExtendedPlayerView @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : PlayerView(context, attrs, defStyleAttr) {
 
-    private var hideControllerVisibility = false
+    private var playerControllerVisibility = true
+    var controllerVisibility
+        get() = playerControllerVisibility
+        set(value) {
+            playerControllerVisibility = value
+            if (!value) hideControllerVisibility()
+        }
+
     private var playerCornerRadius = 0f
 
     private var mutePlayer = false
@@ -30,7 +37,7 @@ class ExtendedPlayerView @JvmOverloads constructor(
         attrs?.let {
             val a = context.theme.obtainStyledAttributes(attrs, R.styleable.ExtendedPlayerView, 0, 0)
             try {
-                hideControllerVisibility = a.getBoolean(R.styleable.ExtendedPlayerView_controllerVisibility, false)
+                playerControllerVisibility = a.getBoolean(R.styleable.ExtendedPlayerView_controllerVisibility, true)
                 mutePlayer = a.getBoolean(R.styleable.ExtendedPlayerView_mutePlayer, false)
                 playerCornerRadius = a.getDimension(R.styleable.ExtendedPlayerView_playerCornerRadius, 0f)
             } finally {
@@ -39,7 +46,7 @@ class ExtendedPlayerView @JvmOverloads constructor(
         }
 
         roundCornerRadius(playerCornerRadius)
-        if (hideControllerVisibility) {
+        if (!playerControllerVisibility) {
             hideControllerVisibility()
         }
     }
@@ -58,20 +65,12 @@ class ExtendedPlayerView @JvmOverloads constructor(
             }
         }
     }
-}
 
-fun ExtendedPlayerView.hideControllerVisibility() {
-    setControllerVisibilityListener { visibility ->
-        if (visibility == 0) {
-            hideController()
-        }
-    }
-}
-
-fun ExtendedPlayerView.showControllerVisibility() {
-    setControllerVisibilityListener { visibility ->
-        if (visibility == 1) {
-            showController()
+    private fun hideControllerVisibility() {
+        setControllerVisibilityListener { visibility ->
+            if (visibility == 0) {
+                hideController()
+            }
         }
     }
 }
