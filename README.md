@@ -4,8 +4,21 @@
 
 `extendedplayerview` is an easy to customize player view for Android extending from [PlayerView](https://exoplayer.dev/doc/reference/com/google/android/exoplayer2/ui/PlayerView.html) to make the migration from `PlayerView` to `ExtendedPlayerView` super easy!
 
+### Installation
+
+#### Maven (waiting for deployment to the Central Repository currently...)
 ```groovy
 implementation "com.waseefakhtar.extendedplayerview:extendedplayerview:1.0.0"
+```
+
+Or,
+
+#### Manually
+1. Download the project and copy ExtendedPlayerView directory to your project
+2. Add the following line to your app's gradle:
+
+```groovy
+implementation project(':extendedplayerview')
 ```
 
 XML Changes:
