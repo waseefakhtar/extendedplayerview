@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         // Setting properties programmatically.
-        playerView.roundCornerRadius(84f)
+        playerView.cornerRadius = 84f
         playerView.mute = true
         playerView.controllerVisibility = false
     }

@@ -24,6 +24,12 @@ class ExtendedPlayerView @JvmOverloads constructor(
         }
 
     private var playerCornerRadius = 0f
+    var cornerRadius
+        get() = playerCornerRadius
+        set(value) {
+            playerCornerRadius = value
+            roundCornerRadius(value)
+        }
 
     private var mutePlayer = false
     var mute
@@ -73,38 +79,38 @@ class ExtendedPlayerView @JvmOverloads constructor(
             }
         }
     }
-}
 
-fun ExtendedPlayerView.roundCornerRadius(@DimenRes radius: Int) {
-    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-        outlineProvider = object : ViewOutlineProvider() {
-            override fun getOutline(view: View, outline: Outline) {
-                outline.setRoundRect(
-                    0,
-                    0,
-                    view.width,
-                    view.height,
-                    view.resources.getDimension(radius)
-                )
+    private fun roundCornerRadius(@DimenRes radius: Int) {
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            outlineProvider = object : ViewOutlineProvider() {
+                override fun getOutline(view: View, outline: Outline) {
+                    outline.setRoundRect(
+                        0,
+                        0,
+                        view.width,
+                        view.height,
+                        view.resources.getDimension(radius)
+                    )
+                }
             }
+            clipToOutline = true
         }
-        clipToOutline = true
     }
-}
 
-fun ExtendedPlayerView.roundCornerRadius(radius: Float) {
-    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-        outlineProvider = object : ViewOutlineProvider() {
-            override fun getOutline(view: View, outline: Outline) {
-                outline.setRoundRect(
-                    0,
-                    0,
-                    view.width,
-                    view.height,
-                    radius
-                )
+    private fun roundCornerRadius(radius: Float) {
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            outlineProvider = object : ViewOutlineProvider() {
+                override fun getOutline(view: View, outline: Outline) {
+                    outline.setRoundRect(
+                        0,
+                        0,
+                        view.width,
+                        view.height,
+                        radius
+                    )
+                }
             }
+            clipToOutline = true
         }
-        clipToOutline = true
     }
 }
