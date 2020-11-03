@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.vanniktech.maven.publish'
 
 android {
     compileSdkVersion 30
@@ -23,11 +24,3 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.3.1'
     implementation 'androidx.appcompat:appcompat:1.2.0'
 }
-
-ext {
-    PUBLISH_GROUP_ID = 'com.waseefakhtar'
-    PUBLISH_ARTIFACT_ID = 'extendedplayerview'
-    PUBLISH_VERSION = android.defaultConfig.versionName
-}
-
-apply from: "${rootProject.projectDir}/scripts/publish-mavencentral.gradle"
