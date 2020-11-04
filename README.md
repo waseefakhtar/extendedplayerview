@@ -11,8 +11,6 @@
 implementation "com.waseefakhtar.extendedplayerview:extendedplayerview:1.0.0"
 ```
 
-Or,
-
 #### Manual
 1. Download the project and copy ExtendedPlayerView directory to your project
 2. Add the following line to your app's gradle:
@@ -61,6 +59,9 @@ Or,
 +       app:mutePlayer="false"
         />
 ```
+
+## Contributions
+Please contribute! I will gladly review any pull requests.
 
 ## License
 
